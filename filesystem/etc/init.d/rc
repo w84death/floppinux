@@ -5,6 +5,15 @@ clear
 cat welcome
 echo "_______KERNEL"
 uname -a
-echo
-read -p "_______PRESS_ENTER" input
-/bin/sh /home/main
+cat << EOF
+
+
+
+_______PRESS [ENTER] FOR DISK NOMAD OR [C] FOR COMMAND PROMPT
+EOF
+read -p "_______CHOOSE:" input
+
+case $input in
+  c) /bin/sh ;;
+  *) /bin/sh /home/main ;;
+esac
