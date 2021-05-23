@@ -1,0 +1,6 @@
+#!/bin/sh
+clear
+./home/diskmag
+echo
+echo "_______GOOD_BYE!"
+

@@ -1,0 +1,7 @@
+#!/bin/sh
+mount -t proc none /proc
+mount -t sysfs none /sys
+clear
+cat welcome
+read -p "_______PRESS_ENTER" input
+/bin/sh /home/main

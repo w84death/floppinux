@@ -1,0 +1,50 @@
+# FLOPPINUX
+I grow up with a PC in home. This was the Intel 486 and MS DOS era. Software comes 
+on 1.44MB 3.5" floppy disks. I even remember the 5.2" black, paper like floppies 
+before that. But most of my childhood I was using the now classic "save icon" 
+floppies.
+
+As a nerd I love old technologies. Especially the one that just works to this day. 
+Floppy disks are one of those. I bought an USB external FDD drive for them to use on 
+any modern computer.
+
+I got the drive, I got a bunch of floppies (new and used). So what now?
+
+## The projects
+I started two projects that I want to put on the floppy. A Nomad Diskmag and a 
+custom made Linux. Each should be delivered on a one floppy disk. Lets concentrate 
+on the later.
+
+## 1.44MB Operating System
+Yes, you can fit the latest Linux on a floppy. And there is still all lot of space 
+for user applications. Having this I tought to make a some sort of a demo disk. 
+Putting my texts from the Nomad Diskmag on the floppy with some super simple 
+reader. I can then boot a computer from the floppy right to the magazine. Just for 
+fun and learning new things. And there is a lot of things to learn.
+
+### The kernel
+I was blown away that I can use the latest and greatest Linux kernel in this 
+project. It has a config for embedded devices. Just with few simple settings and a 
+few minutes of compilation I got the bzImage that uses 632KB of space!
+
+### BusyBox and Initramfs
+Kernel is not enough, it also needs some directory structure and basic 
+applications. GNU utilities are the best but way too big for embedded world. That's 
+why community created BusyBox - a small subset of essential software that replace 
+GNU. This is not 100% replacement more like a light version of each GNU tool. But 
+powerfull enough to make an fully functional operating system. Should we name it 
+BusyBox/Linux then? ;)
+
+### Progress
+I spend few evening reading a lot of forums, blog posts and manuals. Step by step 
+I was able to create a simple steps for building this distribuion from scratch. I 
+documented this on my blog at bits.p1x.in [0]. I highly recommend reading it and 
+creating your own little operating system alongside.
+ 
+## But really, why?
+Is this work needed to anyone? Probably not. For me it's just for fun and 
+learning. And without artificial restrictions I become bored and lost creativity. 
+That is why my projects are always strange. But I like it that way. If you never 
+tried restricting yoursel just do it - you'll be suprised by the outcoms.
+
+[0] https://bits.p1x.in/floppinux-an-embedded-linux-on-a-single-floppy/

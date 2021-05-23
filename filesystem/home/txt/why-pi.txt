@@ -1,0 +1,61 @@
+# Why Raspberry Pi? 
+##Krzysztof Krystian Jankowski 
+
+The moment I saw a printed magazine with a free computer included on the cover I 
+knew the future is now. Raspberry Pi is the Amiga of our times. But smaller, way 
+faster, and super cheap. Since the first Pi single-board computer (SBC) idea 
+become mainstream. Thanks to the work of the Raspberry Pi Foundation the whole 
+ecosystem is constantly updated and new features added.
+
+Starting from the board itself. You can touch it whatever you want and it will 
+not break from static. ANd what you would ever want to touch it? Kids. It is a 
+perfect first computer for a young will-be-programmer. Pi board is small but you 
+can see what components are for. Where is the main CPU and where wifi chip? You 
+can learn a lot just by looking, touching and asking about each and every part of 
+this little computer.
+
+Hardware is slow compared to a modern PC. But it's fast enough to write programs 
+on it. And to do this you need a software stack. Raspberry Pi OS has all of this 
+already set up for us. There is the tone of documentation, books, magazines, and 
+even sets of example projects to follow.
+
+Recently Pi gets the official Visual Studio Code. And with a single line `sudo 
+apt install python3-pygame` I have everything I need to write good, accelerated 
+python applications. And with pyinstaller, I can compress my new app to a single 
+file. Easy to share with friends.
+
+That covers code. What about sound? Sonic Pi. This is the easiest and most fun 
+way for creating music for a programmer.
+
+Maintaining and experimenting on Raspberry Pi is super easy. The whole system 
+sits on an sd card. If I break the system I just bake a new sd card and start 
+over. If I want to test some new OS I can use a separate card and just swap for a 
+moment. And the best part is that this card will work on any Pi. From zero to 4. 
+Thanks to this I can test and set up a particular project on a Pi3 with 4 USB 
+ports, Ethernet, and HDMI out. Then when I'm done I just move the card to a Pi 
+Zero. The only USB it has I use for a gamepad. Easy deployment for a gum-sized 
+computer.
+
+The community came up with crafted images for all sorts of projects. Retro 
+emulation, NAS, music center, or Pi-hole. I used to run my server based on a few 
+Raspberries. I also stream pigeons from our balcony.
+
+The Pi model B is small, like a smartphone. It hasfour USB ports for mouse, 
+keyboard, gamepad. If you create something like a console that booths right to 
+the app and needs only gamepad to control then theres Raspberry Pi Zero. It super 
+small and all it's need to do is to swap sd card. I made this magazine agzacly 
+that way. I have a Raspbarrian Lite with auto login to console. Then it runs the 
+Diskmag app. I added gamepad input exactly for that use case. Now I can show the 
+project to anyone on a big 40" screen.
+
+When I was gwrowing mushrooms indoor I needed to know humidity and temperature 
+inside the growbox. I have a senor for that and and simple LCD screen. I plugged 
+all of this to the Pi Zero and codded some python code. It showed latest 
+readings, toggles hummidity and temp and, refreshes readengs each 30 sec. It 
+survived this environment.
+
+You got the pattern. If there is a need for some automation or IoT the Rasbperry 
+Pi is perfect. Just got two: Raspberry Pi 4 (at last 4GB ram) and Raspbery Pi 
+Zero W. Or two Zero's ;)
+
+At the end of the day, it is just fun to use.

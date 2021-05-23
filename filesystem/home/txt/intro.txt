@@ -1,0 +1,28 @@
+# Introduction to the Diskmag
+## Krzysztof Krystian Jankowski
+
+As a hacker, I like to challenge myself for learning new things. I also like to 
+write about the stuff I do. Combining those two I came up with a diskmag - digital 
+magazine. In the days of glory, those zines were distributed on tapes and 
+discettes. To keep this project in the mood I also want to share the sources on 
+the real floppy.
+
+I have many web pages and blogs where I could publish my articles. But none of 
+those are cool enough to beat a real diskmag :)
+
+My goal was to be as compatible as possible. And the only solution was to make my 
+own linux distribution that will boot from the diskmag floppy. As you can see I 
+manage to fit this whole magazine with working OS on one 1.44MB floppy disk.
+
+It boots super slimmed Linux kernel 5.13 (latest) and uses virtual rootfs file 
+with all the tools needed to run magazine scripts. After boot it runs hush shell 
+that runs main script. From that point it works as a kiosk software - user - can 
+only interact with the main app to read included articles.
+
+Making this all works was an incredible oportunity to learn Linux. In the end I 
+created a simple and clean list of steps to recreate my work. It is published at 
+https://bits.p1x.in if you are intrested in making super small operating systems.
+
+This is the #0 issue. A pilot. I prepared few exclusive articles for it. In the future I will be happy to include any of your submisions. Email them to kj@p1x.in.
+
+Enjoy reading.

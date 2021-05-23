@@ -1,0 +1,64 @@
+# PERFECT WORD EDITOR
+I like to write on a computer. I mostly write about my hobbies like 
+programming and FPV drones. I rarely use any graphics nor images in the 
+articles. I grow in the DOS era with a black-and-white monitor. I'm a Linux 
+guy. I'm used to text and command line. When If I ever need to format the 
+document I would use markdown syntax. I think I just like the simplicity 
+and compatibility with text files. Basically any computer no matter how 
+simple or complex can read text files. I use plane English so I don't need 
+to worry about UTF8 support.  Even if I needed some special characters UTF8 
+is widely supported in the 2021.
+
+The beauty of editing text files is that I do not need any complicated word 
+processor. All I need is a clean and simple command line editor. Over the 
+years I used three of them: WordGrinder, VIM and nano. Each have it's 
+unique features.
+
+## Wordgrinder
+WordGrinder is good when you want something that is closer to word 
+processing - with text styling and pages. It is fast and very intuitive. 
+The official description (in the repository) says it all: "simple word 
+processor for writing first drafts". What I did not like is that it uses 
+it's own file format that can be readed only in the Wordgrinder itself. I 
+ended up having two versions of the file .wg and .txt.
+
+## Vim
+Most fameous for not allowing users to quit the application. It's a joke as 
+you need to know the special key combination to do that. To do anything at 
+all. The learning curve is almost like a vertical wall - extremely hard at 
+start. But when you know how to use it there is nothing out there that can 
+compete. This is my main editor for configuration files. It is included in 
+any Linux distribution - even those that fits on a 3.5" floppy. 
+Unfortunately for editing longer texts it's too complicated.
+
+## Nano
+And here comes the nano. It is this perfect balance between super simple 
+while having all the advanced features when needed. It is the default 
+editor for Raspberry Pi OS. It looks a little bit like father of all 
+editors: WordStar (DOS). It has menu with all the important shortcuts at 
+the bottom. Also there is very good help when I forgot some shortcut.
+
+I really like it because of the workflow it provides. It starts as a blank 
+page. Then I enable word wrapping [alt]+[$] and line numbers [alt]+[#]. I 
+then write a paragraph of text. When I done with it I like to make it 
+justify (to the terminal width) for better readibility using [ctrl]+[j]. 
+When I edit given paragraph I justify again and the text is perfectly 
+shuffled to look good. There is even a spell checker [ctrl]+[t]. It only 
+search for unknown words but that is enough for the draft stage.
+
+All the commands are shortcut based using [ctrl] or [alt]. Always showing a 
+list of them at the bottom with easy to understand descriptions. So I do 
+not need to learn all of them it comes naturally over time as most 
+shortcuts are the first letter of an English word.
+
+I totally get why George R.R. Martin still uses WordStar in DOS to write his books. 
+Any additional GUI is just not needed and compromise the screen size. As a bonus 
+using those extremely light applications means they will run on anything. I have my 
+favorite laptop - a 10" Fujitsu Siemens Lifebook p1610 that has 1Ghz CPU and 1GB of 
+RAM. Super slow for todays software. But using Raspberry OS with terminal software 
+it super smooth and to this day can run 5h on the original battery. It is my 
+favorite hardware for outdoors.
+
+## Summary
+Low end computer with Linux and nano editor is my equivalent of a mobile 
+typewriter.
