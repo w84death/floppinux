@@ -4,62 +4,18 @@
 #
 
 # COVER
-cat << EOF
-_______Krzysztof Krystian Jankowski
-_______Presents:
-
-           _________________
-          /_/   NOMAD    /_/;
-         / '  DISKMAG   ' //
-        / '------------' //
-       /   .--------.   //
-      /   /         /  //
-     .___/_________/__//   1440KiB
-     '===\_________\=='   3.5"
-
-
-
-_______ISSUE_#0
-_______2021.04-05
-_______floppinux_edition
-_______beta1
-_______cover:KKJ
-
-
-
-
-EOF
+cat /home/cover
 read -p "_______PRESS_ENTER" input
 
 while true; do
 clear
-cat << EOF
-_______NOMAD_DISKMAG_#0
-_______TABLE_OF_CONTENT
- /                       .-----=     /|'
-/___________________________________/||'
-|    _   ________________   _____   |||'
-|   [o] [/             //] [/___/]  |||/
-|    "  /_____________//'   '___'   ||/
-| IBM   \_____________\'            |/
-'___________________________________'
-
-_______[1]_INTRO
-_______[2]_WHY_PI
-_______[3]_PERFECT_EDITOR
-_______[4]_FLOPPINUX
-
-_______[0]_EXIT
-
-
-
-_______HINT:(press q to go back from reader)
-EOF
+cat /home/toc
 read -p "_______CHOOSE:" doit
 clear
 
 case $doit in
   0) exit ;;
+  c) cat /home/cover ;;
   1) cat /home/txt/intro.txt | less ;;
   2) cat /home/txt/why-pi.txt | less ;;
   3) cat /home/txt/perfect-editor.txt | less ;;

@@ -1,6 +1,15 @@
 #!/bin/sh
 clear
 ./home/diskmag
-echo
-echo "_______GOOD_BYE!"
+cat << EOF
+_______GOOD_BYE!
+
+
+
+
+_______VISIT:
+_______https://bits.p1x.in
+_______https://krzysztofjankowski.com
+_______https://cyfrowynomada.eu
+EOF
 
