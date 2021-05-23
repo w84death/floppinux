@@ -1,5 +1,5 @@
 # FLOPPINUX 💾
-![FLOPPINUX boot image](cover.jpg)
+![FLOPPINUX boot image](cover-0.2.1.jpg)
 
 An Embedded 🐧Linux on a Single 💾Floppy
 
