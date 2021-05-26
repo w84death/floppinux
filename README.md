@@ -3,8 +3,9 @@
 
 An Embedded 🐧Linux on a Single 💾Floppy
 
-## Article
-Read full article at https://bits.p1x.in/floppinux-an-embedded-linux-on-a-single-floppy/
+## Article/Tutorial
+- creating distribution https://bits.p1x.in/floppinux-an-embedded-linux-on-a-single-floppy/
+- creating custom application (scritps) https://bits.p1x.in/creating-sample-application-on-floppinux/
 
 ## EPUB Manual
 Read only the manual:
