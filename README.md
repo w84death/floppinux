@@ -17,3 +17,8 @@ Read only the manual:
 - This repo https://github.com/w84death/floppinux/tree/main/manual
 - Mirror https://archive.org/details/floppinux-manual/
 
+## UPDATE 0.2.2
+![FLOPPINUX Version 0.2.2](cover-0.2.2.jpg)
+
+Code refactored. Smaller builds. Instructions for 64-bit host OS.
+Read more at: https://bits.p1x.in/floppinux-0-2-2/
