@@ -1,6 +1,6 @@
 #!/bin/sh
 clear
-./home/diskmag
+./app/the-app
 cat << EOF
 _______GOOD_BYE!
 

@@ -1,0 +1,25 @@
+#!/bin/sh
+# SAMPLE APPLICATION
+# FLOPPINUX EDITION SCRIPT
+#
+
+# COVER
+cat /app/cover
+read -p "_______PRESS_ENTER" input
+
+while true; do
+clear
+cat /app/toc
+read -p "_______CHOOSE:" doit
+clear
+
+case $doit in
+  0) exit ;;
+  1) cat /app/cover && read -p "______PRESS_ENTER" input ;;
+  2) cat /welcome && read -p "______PRESS_ENTER" input ;;
+  3) cat /app/loremipsum | less ;;
+  k) uname -a && read -p "_______PRESS_ENTER" input ;;
+  c) /bin/sh ;;
+  *) clear ;;
+esac
+done
