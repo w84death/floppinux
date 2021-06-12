@@ -29,8 +29,6 @@ FSIMAGE			= floppinux.img
 BZIMAGE		= $(LINUX_DIR)/arch/$(ARCH)/boot/$(KERNEL)
 INIT		= $(FILESYSTEM_DIR)/sbin/init
 
-$(info $(shell mkdir -p out ))
-
 .SILENT: download_toolchain
 
 .PHONY: all allconfig rebuild test_filesystem test_floppy_image size clean clean_linux clean_busybox clean_filesystem
@@ -63,7 +61,7 @@ compile_linux:
 	$(MAKE) ARCH=x86 -C $(LINUX_DIR) -j $(CORES) $(KERNEL)
 	@echo Kernel size
 	ls -la $(BZIMAGE)
-	cp $(BZIMAGE) ./out
+	cp $(BZIMAGE) .
 
 download_toolchain:
 
@@ -119,7 +117,7 @@ make_floppy_image:
 	syslinux --install $(FSIMAGE)
 	sudo mkdir -p $(MOUNT_POINT)
 	sudo mount -o loop $(FSIMAGE) $(MOUNT_POINT)
-	sudo cp out/$(KERNEL) $(ROOTFS) $(SYSLINUX_CFG) $(MOUNT_POINT)
+	sudo cp $(KERNEL) $(ROOTFS) $(SYSLINUX_CFG) $(MOUNT_POINT)
 	sync
 	sudo umount $(MOUNT_POINT)
 
