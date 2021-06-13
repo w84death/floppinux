@@ -8,7 +8,7 @@ SHELL := /bin/bash
 ARCH			= x86
 LINUX_DIR		= linux
 LINUX_CFG		= $(LINUX_DIR)/.config
-BUSYBOX_DIR		= busybox-1.33.1
+BUSYBOX_DIR		= busybox
 BUSYBOX_CFG		= $(BUSYBOX_DIR)/.config
 FILES_DIR		= files
 FILESYSTEM_DIR	= filesystem
@@ -64,10 +64,9 @@ compile_linux:
 	cp $(BZIMAGE) .
 
 download_toolchain:
-
 ifeq ($(SYS_ARCH),x86_64)
 	if [ ! -d $(TOOLCHAIN_DIR) ]; then \
-	echo "Downloading musl toolchain..." \
+	echo "Downloading musl toolchain..."; \
 	wget https://musl.cc/i486-linux-musl-cross.tgz; \
 	tar xf i486-linux-musl-cross.tgz; \
 	fi
