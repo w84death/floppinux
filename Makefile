@@ -87,14 +87,14 @@ endif
 configure_busybox:
 	$(MAKE) ARCH=x86 -C $(BUSYBOX_DIR) allnoconfig
 	$(MAKE) ARCH=x86 -C $(BUSYBOX_DIR) menuconfig
+
+compile_busybox:
 ifeq ($(SYS_ARCH),x86_64)
 	@sed -i "s|.*CONFIG_CROSS_COMPILER_PREFIX.*|CONFIG_CROSS_COMPILER_PREFIX="\"$(BASE)"/i486-linux-musl-cross/bin/i486-linux-musl-\"|" $(BUSYBOX_DIR)/.config
 	@sed -i "s|.*CONFIG_SYSROOT.*|CONFIG_SYSROOT=\""$(BASE)"/i486-linux-musl-cross\"|" $(BUSYBOX_DIR)/.config
-	@sed -i "s|.*CONFIG_EXTRA_CFLAGS.*|CONFIG_EXTRA_CFLAGS=-I$BASE/i486-linux-musl-cross/include|" $(BUSYBOX_DIR)/.config
-	@sed -i "s|.*CONFIG_EXTRA_LDFLAGS.*|CONFIG_EXTRA_LDFLAGS=-L$BASE/i486-linux-musl-cross/lib|" $(BUSYBOX_DIR)/.config
+	@sed -i "s|.*CONFIG_EXTRA_CFLAGS.*|CONFIG_EXTRA_CFLAGS=\"-I"$(BASE)"/i486-linux-musl-cross/include\"|" $(BUSYBOX_DIR)/.config
+	@sed -i "s|.*CONFIG_EXTRA_LDFLAGS.*|CONFIG_EXTRA_LDFLAGS=\"-L"$(BASE)"/i486-linux-musl-cross/lib\"|" $(BUSYBOX_DIR)/.config
 endif
-
-compile_busybox:
 	$(MAKE) ARCH=x86 -C $(BUSYBOX_DIR) -j $(CORES)
 	$(MAKE) ARCH=x86 -C $(BUSYBOX_DIR) install
 	mv $(BUSYBOX_DIR)/_install $(FILESYSTEM_DIR)
@@ -144,3 +144,6 @@ clean_busybox:
 clean_filesystem:
 	sudo rm -rf $(FILESYSTEM_DIR)
 	rm -f $(FSIMAGE) $(ROOTFS)
+
+reset: clean_filesystem
+	sudo rm -rf $(LINUX_DIR) $(BUSYBOX_DIR) $(TOOLCHAIN_DIR) i486-linux-musl-cross.tgz
