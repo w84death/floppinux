@@ -1,0 +1,11 @@
+.git
+.gitignore
+.dockerignore
+.vscode
+linux/
+filesystem/
+out/
+Dockerfile
+LICENSE
+README.md
+tag
