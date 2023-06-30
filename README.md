@@ -3,7 +3,7 @@
 
 An Embedded 🐧Linux on a Single 💾Floppy
 
-Homepage: https://bits.p1x.in/floppinux/
+Homepage: https://krzysztofjankowski.com/floppinux/
 
 
 ## Article/Tutorial
