@@ -9,6 +9,7 @@ ARCH			= x86
 LINUX_DIR		= linux
 LINUX_CFG		= $(LINUX_DIR)/.config
 BUSYBOX_DIR		= busybox
+BUSYBOX_VER     = 1_35_stable
 BUSYBOX_CFG		= $(BUSYBOX_DIR)/.config
 FILES_DIR		= files
 FILESYSTEM_DIR	= filesystem
@@ -33,7 +34,11 @@ INIT		= $(FILESYSTEM_DIR)/sbin/init
 
 .PHONY: all allconfig rebuild test_filesystem test_floppy_image size clean clean_linux clean_busybox clean_filesystem
 
-all: get_linux compile_linux download_toolchain get_busybox compile_busybox make_rootfs make_floppy_image
+linux: get_linux compile_linux
+
+busybox: download_toolchain get_busybox compile_busybox
+
+all: linux busybox make_rootfs make_floppy_image
 
 allconfig: get_linux configure_linux compile_linux download_toolchain get_busybox configure_busybox \
 		compile_busybox make_rootfs make_floppy_image
@@ -43,7 +48,7 @@ rebuild: clean_filesystem compile_linux compile_busybox make_rootfs make_floppy_
 cleanbuild: clean compile_linux compile_busybox make_rootfs make_floppy_image
 
 get_linux:
-ifneq ($(wildcard $(LINUX_DIR)),)
+ifneq ($(wildcard $(LINUX_DIR)/.git),)
 	@echo "Linux directory found, pulling latest changes..."
 	cd $(LINUX_DIR) && git pull
 else
@@ -61,7 +66,7 @@ compile_linux:
 	$(MAKE) ARCH=x86 -C $(LINUX_DIR) -j $(CORES) $(KERNEL)
 	@echo Kernel size
 	ls -la $(BZIMAGE)
-	cp $(BZIMAGE) .
+	cp $(BZIMAGE) ./out
 
 download_toolchain:
 ifeq ($(SYS_ARCH),x86_64)
@@ -75,12 +80,12 @@ else
 endif
 
 get_busybox:
-ifneq ($(wildcard $(BUSYBOX_DIR)),)
+ifneq ($(wildcard $(BUSYBOX_DIR)/.git),)
 	@echo "Busybox directory found, pulling latest changes..."
 	cd $(BUSYBOX_DIR) && git pull
 else
 	@echo "Busybox directory not found, cloning repo..."
-	git clone https://git.busybox.net/busybox/ $(BUSYBOX_DIR)
+	git clone -b $(BUSYBOX_VER) https://git.busybox.net/busybox/ $(BUSYBOX_DIR)
 	cp $(FILES_DIR)/busybox-config $(BUSYBOX_CFG)
 endif
 
@@ -101,49 +106,54 @@ endif
 
 make_rootfs:
 	mkdir -p $(FILESYSTEM_DIR)/{dev,proc,etc/init.d,sys,tmp}
-	sudo mknod $(FILESYSTEM_DIR)/dev/console c 5 1
-	sudo mknod $(FILESYSTEM_DIR)/dev/null c 1 3
+	if [ ! -f $(FILESYSTEM_DIR)/dev/console ]; then \
+		mknod $(FILESYSTEM_DIR)/dev/console c 5 1; \
+	fi
+	if [ ! -f $(FILESYSTEM_DIR)/dev/null ]; then \
+		mknod $(FILESYSTEM_DIR)/dev/null c 1 3; \
+	fi
 	cp $(INITTAB) $(FILESYSTEM_DIR)/etc/
 	cp $(RC) $(FILESYSTEM_DIR)/etc/init.d/
 	cp $(WELCOME) $(FILESYSTEM_DIR)/
 	chmod +x $(FILESYSTEM_DIR)/etc/init.d/rc
-	sudo chown -R root:root $(FILESYSTEM_DIR)/
-	cd $(FILESYSTEM_DIR); find . | cpio -H newc -o | xz --check=crc32 > ../$(ROOTFS)
+	chown -R root:root $(FILESYSTEM_DIR)/
+	cd $(FILESYSTEM_DIR); find . | cpio -H newc -o | xz --check=crc32 > ../out/$(ROOTFS)
 
 make_floppy_image:
 	dd if=/dev/zero of=$(FSIMAGE) bs=1k count=$(ROOTFS_SIZE)
 	mkdosfs $(FSIMAGE)
 	syslinux --install $(FSIMAGE)
-	sudo mkdir -p $(MOUNT_POINT)
-	sudo mount -o loop $(FSIMAGE) $(MOUNT_POINT)
-	sudo cp $(KERNEL) $(ROOTFS) $(SYSLINUX_CFG) $(MOUNT_POINT)
+	mkdir -p $(MOUNT_POINT)
+	mount -o loop $(FSIMAGE) $(MOUNT_POINT)
+	cp out/$(KERNEL) out/$(ROOTFS) $(SYSLINUX_CFG) $(MOUNT_POINT)
 	sync
-	sudo umount $(MOUNT_POINT)
+	umount $(MOUNT_POINT)
+	mv $(FSIMAGE) ./out
 
 test_filesystem:
-	qemu-system-i386 -kernel $(KERNEL) -initrd $(ROOTFS)
+	qemu-system-i386 -kernel out/$(KERNEL) -initrd out/$(ROOTFS)
 
 test_floppy_image:
-	qemu-system-i386 -fda $(FSIMAGE)
+	qemu-system-i386 -fda out/$(FSIMAGE)
 
 size:
-	sudo mount -o loop $(FSIMAGE) $(MOUNT_POINT)
+	mount -o loop out/$(FSIMAGE) $(MOUNT_POINT)
 	df -h $(MOUNT_POINT)
 	ls -lah $(MOUNT_POINT)
-	sudo umount $(MOUNT_POINT)
+	umount $(MOUNT_POINT)
 
 clean: clean_linux clean_busybox clean_filesystem
 
 clean_linux:
 	$(MAKE) -C $(LINUX_DIR) clean
-	rm -f $(KERNEL)
+	rm -f out/$(KERNEL)
 
 clean_busybox:
 	$(MAKE) -C $(BUSYBOX_DIR) clean
 
 clean_filesystem:
-	sudo rm -rf $(FILESYSTEM_DIR)
+	rm -rf $(FILESYSTEM_DIR)
 	rm -f $(FSIMAGE) $(ROOTFS)
 
 reset: clean_filesystem
-	sudo rm -rf $(LINUX_DIR) $(BUSYBOX_DIR) $(TOOLCHAIN_DIR) i486-linux-musl-cross.tgz
+	rm -rf $(LINUX_DIR) $(BUSYBOX_DIR) $(TOOLCHAIN_DIR) i486-linux-musl-cross.tgz

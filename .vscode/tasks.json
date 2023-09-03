@@ -1,0 +1,31 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build: build docker image",
+            "type": "shell",
+            "command": "docker build -t $(cat tag) .",
+            "problemMatcher": []
+        },
+        {
+            "label": "build: run build",
+            "type": "shell",
+            "command": "docker run -it --rm --privileged -v $PWD/out:/src/out $(cat tag)",
+            "problemMatcher": []
+        },
+        {
+            "label": "build: run bash",
+            "type": "shell",
+            "command": "docker run -it --rm --privileged -v $PWD/out:/src/out $(cat tag) /bin/bash",
+            "problemMatcher": []
+        },
+        {
+            "label": "maintenance: docker cleanup",
+            "type": "shell",
+            "command": "docker system prune -f",
+            "problemMatcher": []
+        }
+    ]
+}
