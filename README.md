@@ -1,5 +1,7 @@
 # FLOPPINUX 💾
 
+Migrated to Codeberg at [https://codeberg.org/w84death/floppinux](https://codeberg.org/w84death/floppinux)
+
 **An Embedded 🐧Linux on a Single 💾Floppy**
 
 > FLOPPINUX is a complete Linux distribution that fits on a single 1.44MB floppy disk. Think of it as Linux From Scratch but for making single floppy distribution. It boots directly into a working Linux terminal with persistent storage and essential tools.
